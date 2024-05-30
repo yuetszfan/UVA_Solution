@@ -3,7 +3,7 @@ package datastructure;
 import java.util.*;
 import java.io.*;
 
-public class Main {
+public class 11417_Gcd {
 
   public static void main(String[] args) throws IOException {
     BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
