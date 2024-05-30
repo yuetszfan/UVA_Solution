@@ -1,0 +1,21 @@
+package datastructure;
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+
+  public static void main(String[] args) throws IOException {
+    BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(buf.readLine()); // number of test cases
+    while (N-- >0){
+      buf.readLine(); //consume the blank line
+      StringTokenizer stk = new StringTokenizer(buf.readLine());
+      int row = Integer.parseInt(stk.nextToken());
+      int column = Integer.parseInt(stk.nextToken());
+      System.out.println("SOLN       COLUMN");
+      System.out.println(" #      1 2 3 4 5 6 7 8");
+      System.out.println();
+      
+    }
+  }
