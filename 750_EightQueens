@@ -3,19 +3,60 @@ package datastructure;
 import java.util.*;
 import java.io.*;
 
-public class Main {
+public class EightQueen {
 
-  public static void main(String[] args) throws IOException {
+	static int[] queens;
+    static int num;// how many solutions can be yielded
+    static int initialrow, initialcolumn;
+	
+  public static void main(String[] args) throws IOException { 
     BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
-    int N = Integer.parseInt(buf.readLine()); // number of test cases
+    int N = Integer.parseInt(buf.readLine()); // get number of test cases
     while (N-- >0){
       buf.readLine(); //consume the blank line
       StringTokenizer stk = new StringTokenizer(buf.readLine());
-      int row = Integer.parseInt(stk.nextToken());
-      int column = Integer.parseInt(stk.nextToken());
+      initialrow = Integer.parseInt(stk.nextToken())-1; //as the chess board starts from index 1,we have to subtract 1
+      initialcolumn = Integer.parseInt(stk.nextToken())-1;
+      queens = new int[8];
+      num=0;
       System.out.println("SOLN       COLUMN");
       System.out.println(" #      1 2 3 4 5 6 7 8");
       System.out.println();
-      
+      decide_position(0);
+      if (N!=0) System.out.println(); // print a blank line between test cases
     }
+    buf.close();
+    System.exit(0);
   }
+    
+  static void decide_position (int column)  {
+	if (column==8 && queens[initialcolumn] == initialrow) {//make sure 8 columns are all processed and the initial queen's position is placed
+		 System.out.printf("%2d      %d", ++num, queens[0] + 1);
+		 for (int j = 1; j < 8; j++) {
+		     System.out.printf(" %d", queens[j] + 1);
+		 }
+		 System.out.println();
+	}
+	
+	for (int r=0;r<8;r++) {
+		if (isValid(r,column)) {
+			queens[column]=r; //record the queen's row position in this column 
+			decide_position(column+1); // go on to the next column
+		}
+	}
+}
+
+  static boolean isValid (int row,int column)  {
+    int offset_row,offset_column=0;
+
+    for (int i=0;i<column;i++) {  	
+      offset_row=Math.abs(queens[i]-row);
+      offset_column=Math.abs(i-column);
+
+      if ((queens[i]==row)||offset_row==offset_column)return false; //if in the same row or in diagonal scope as previous queen
+    }
+    return true;
+  }
+}
+
+
