@@ -1,0 +1,29 @@
+package datastructure;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class DoomsDay {
+
+	public static void main(String[] args) throws IOException {
+		int[] eachmonth_days= {0,31,28,31,30,31,30,31,31,30,31,30,31}; //2011 is a non-leap year
+		String[] days = {"Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"}; //January 1st 2011 falls on Saturday
+		BufferedReader buf= new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(buf.readLine()); // number of test cases;
+		while (N-- >0) {
+			StringTokenizer stk = new StringTokenizer(buf.readLine());
+			int M = Integer.parseInt(stk.nextToken());
+			int D = Integer.parseInt(stk.nextToken());
+			int passing_days=0;
+			for (int i=1;i<M;i++) {
+				passing_days+=eachmonth_days[i]; //calculate days in completed months
+			}
+			passing_days+=(D-1); // add the passing days in non-completing month
+			System.out.println(days[passing_days%7]);
+		}
+		buf.close();
+		System.exit(0);
+	}
+}
