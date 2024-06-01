@@ -4,8 +4,7 @@ import java.util.*;
 import java.io.*;
 
 public class EightQueen {
-
-	static int[] queens;
+    static int[] queens;
     static int num;// how many solutions can be yielded
     static int initialrow, initialcolumn;
 	
