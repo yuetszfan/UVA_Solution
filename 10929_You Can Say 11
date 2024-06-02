@@ -1,0 +1,33 @@
+package datastructure;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class YouCanSay11 {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
+		while(true) {
+			String N = buf.readLine(); //since the input can contain up to 1000 digits, use string type
+			if (N.equals("0"))break;
+			int odd_sum=0;
+			int even_sum=0;
+			for (int i =0;i<N.length();i+=2) {
+				char c = N.charAt(i); //turn odd digit's number into character
+				odd_sum += Character.getNumericValue(c); //turn it into integer for calculation
+			}
+			for (int j=1;j<N.length();j+=2) {
+				char c = N.charAt(j);
+				even_sum += Character.getNumericValue(c);
+			}
+			if (Math.abs(odd_sum-even_sum)%11==0) {
+				System.out.println(N+" is a multiple of 11.");
+			}else {
+				System.out.println(N+" is not a multiple of 11.");
+			}			
+		}
+		buf.close();
+		System.exit(0);
+	}
+}
