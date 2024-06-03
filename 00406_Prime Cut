@@ -1,0 +1,66 @@
+package datastructure;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class Primecut {
+		static boolean[] sieve(int n) {
+			boolean[] primes = new boolean[n+1];
+			Arrays.fill(primes, true);
+			primes[0]=false; // set 0 as non-prime
+			
+			for(int i = 2;i*i<=n;++i) {
+				if (primes[i]) {
+					for (int j = i+i;j<=n;j+=i) {
+						primes[j]=false; //false means non-prime
+					}
+				}
+			}
+			return primes;
+		}
+		public static void main(String[] args) throws IOException {	
+			BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
+			boolean primes[] = sieve(1000);
+			
+			String line;
+			while (!(line = buf.readLine()).isEmpty()) {
+				StringTokenizer stk = new StringTokenizer(line);
+				int n = Integer.parseInt(stk.nextToken()); 
+				int c = Integer.parseInt(stk.nextToken());
+				
+				ArrayList<Integer> arrl = new ArrayList<Integer>();
+				for (int k = 1;k<=n;++k) {
+					if (primes[k]) {
+						arrl.add(k);
+					}		
+				}
+				
+				int size = arrl.size();
+				System.out.print(n + " " + c + ":");
+				if ((2 * c) - 1 > size) {
+					for (int k = 0; k < size; k++) {
+						System.out.print(" "+arrl.get(k));
+					}
+				} else {
+					if (size % 2 == 0) { // print C*2 numbers from the middle 
+						for (int k = size / 2 - c; k < size / 2 + c; k++) {
+							System.out.print(" "+arrl.get(k));
+						}
+					} else { // print (C*2)-1 numbers from the middle
+						for (int k = size / 2 - c + 1; k < size / 2 + c; k++) {
+							System.out.print(" "+arrl.get(k));
+						}
+					}
+				}
+				System.out.println();
+				System.out.println();
+			}
+			buf.close();
+			System.exit(0);
+		}
+
+}
