@@ -1,0 +1,40 @@
+import java.util.*;
+import java.io.*;
+
+class Main {
+
+  public static void main(String[] args) throws IOException {
+  String line;
+    
+    BufferedReader buf = new BufferedReader(new InputStreamReader(System.in));
+    while ((line=buf.readLine()) != null){
+      StringTokenizer stk = new StringTokenizer(line);
+      int N = Integer.parseInt(stk.nextToken());
+      ArrayList<Integer> jolly_arrl = new ArrayList<Integer>();
+      for (int i=N-1;i>0;i--){ //placing jolly jumpers from 1 to n-1
+        jolly_arrl.add(i);
+      }
+
+      ArrayList<Integer> input_arrl = new ArrayList<Integer>();
+      for (int j=0;j<N;j++){
+        input_arrl.add(Integer.parseInt(stk.nextToken().trim())); //using trim in case of negative integers
+      }
+
+      for (int k=0;k<N-1;k++){
+        int l=k+1;
+        int dif = Math.abs(input_arrl.get(k)-input_arrl.get(l)); //calculating difference between successive numbers
+        if (!(jolly_arrl.contains(dif))) {
+          System.out.println("Not jolly");
+          break;
+        }else{
+          jolly_arrl.remove(Integer.valueOf(dif));
+        }
+      }
+      if (jolly_arrl.isEmpty()){ //every jolly jumper is present
+        System.out.println("Jolly");
+      }
+    }
+    buf.close();
+    System.exit(0);
+  }  
+}
