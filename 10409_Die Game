@@ -1,0 +1,38 @@
+package datastructure;
+
+import java.util.Scanner;
+
+public class DieGame {
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n=0;
+        
+        while((n=scn.nextInt())!=0) {
+            int top=1;
+            int north=2;
+            int west=3;
+            scn.nextLine(); // To consume the newline character after reading integer
+            for(int i=1;i<=n;i++) {
+                int temp_bottom=0;
+                String st = scn.next();
+                if (st.equals("north")) { // Use .equals() for string comparison
+                    temp_bottom = north;
+                    north = top;
+                } else if (st.equals("west")) {
+                    temp_bottom = west;
+                    west = top;
+                } else if (st.equals("south")) {
+                    temp_bottom = Math.abs(north - 7);
+                    north = 7 - top; // equals to "south = top"
+                } else if (st.equals("east")) {
+                    temp_bottom = Math.abs(west - 7);
+                    west = 7 - top; // equals to "east = top"
+                }                
+                top = Math.abs(temp_bottom - 7);                
+            }
+            System.out.println(top);
+        }
+        scn.close();
+    }
+}
