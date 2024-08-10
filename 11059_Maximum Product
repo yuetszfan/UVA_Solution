@@ -1,0 +1,40 @@
+package datastructure;
+
+import java.util.Scanner;
+
+public class MaximumProduct {
+
+	public static void main(String[] args) {
+		Scanner scn=new Scanner(System.in);
+		int k=0;
+		while (scn.hasNextInt()) {
+			k++;
+			int n=scn.nextInt();
+			int[] arr=new int[n+1];
+			long currentmax=1;
+
+			for (int i=1;i<=n;i++) {
+				arr[i]=scn.nextInt();
+			}
+			
+			long allmax=0;
+			for (int i=1;i<=n;i++) {
+				currentmax=1;
+				for (int j=i;j<=n;j++) {
+					currentmax*=arr[j];
+					allmax=Math.max(allmax,currentmax);
+				}
+			}
+			if (allmax<0)
+				allmax=0;
+			System.out.println("Case #"+k+": The maximum product is "+allmax+".");
+			System.out.println();
+			
+			if (scn.hasNextLine()) {
+				scn.nextLine(); //consume the blank line between cases
+			}
+		}
+
+	}
+
+}
