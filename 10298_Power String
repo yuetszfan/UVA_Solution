@@ -1,0 +1,36 @@
+import java.util.*;
+import static java.lang.System.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        while (true) {
+            String line = sc.nextLine();
+            if (line.equals(".")) break;
+
+            int n = line.length();
+            int maxRepeat = 1;
+
+            for (int i = 1; i <= n / 2; i++) {
+                if (n % i == 0) {
+                    String sub = line.substring(0, i);
+                    StringBuilder repeatedSub = new StringBuilder();
+                    
+                    // Build the repeated substring
+                    for (int j = 0; j < n / i; j++) {
+                        repeatedSub.append(sub);
+                    }
+                    
+                    // Check if it matches the original string
+                    if (repeatedSub.toString().equals(line)) {
+                        maxRepeat = n / i;
+                        break; // No need to check further, we found the largest repeat
+                    }
+                }
+            }
+
+            System.out.println(maxRepeat);
+        }
+    }
+}
