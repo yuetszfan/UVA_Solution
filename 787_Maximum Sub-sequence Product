@@ -1,0 +1,33 @@
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scn=new Scanner(System.in);
+		String str="";
+		while (scn.hasNext()) {
+			ArrayList<BigInteger> arrl=new ArrayList<BigInteger>();
+			BigInteger max= new BigInteger("-999999");
+			int i=0;
+			while(!(str=scn.next()).equals("-999999")) {
+				BigInteger bigint=new BigInteger(str);
+				arrl.add(bigint);
+				i++;
+			}
+			BigInteger cur=BigInteger.ONE;
+			for (int j=0;j<arrl.size();j++) {
+				cur=BigInteger.ONE;
+				for (int k=j;k<arrl.size();k++) {
+					cur=cur.multiply(arrl.get(k));
+					if (max.compareTo(cur)==-1)
+						max=cur;
+				}
+			}
+
+			System.out.println(max);
+		}
+	}
+
+}
