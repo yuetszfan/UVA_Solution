@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class TexQuote {
+
+	public static void main(String[] args) {
+		Scanner scn=new Scanner(System.in);
+
+		int cnt=0;
+		while (scn.hasNextLine()) {
+			String line=scn.nextLine();
+			StringBuilder strb=new StringBuilder();
+			for (int i=0;i<line.length();i++) { 
+				if (line.charAt(i)!=('"')) {
+					strb.append(line.charAt(i));
+				}else {
+					cnt++;
+					if (cnt%2==1) {
+						strb.append("``");
+					}else {
+						strb.append("''");
+					}
+				}
+			}
+			System.out.println(strb);
+		}
+		
+
+	}
+
+}
