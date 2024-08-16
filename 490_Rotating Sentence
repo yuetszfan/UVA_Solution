@@ -1,0 +1,34 @@
+import java.util.*;
+import static java.lang.System.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        char[][] arr = new char[100][100];
+        int line_cnt = 0;
+        int max_width = 0;
+
+        // Initialize the array with spaces
+        for (int i = 0; i < 100; i++) {
+            Arrays.fill(arr[i], ' ');
+        }
+
+        // Read input lines and store in the array
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine();
+            for (int i = 0; i < line.length(); i++) {
+                arr[line_cnt][i] = line.charAt(i);
+            }
+            max_width = Math.max(max_width, line.length());
+            line_cnt++;
+        }
+
+        // Print the rotated output
+        for (int k = 0; k < max_width; k++) {
+            for (int l = line_cnt - 1; l >= 0; l--) {
+                System.out.print(arr[l][k]);
+            }
+            System.out.println();
+        }
+    }
+}
