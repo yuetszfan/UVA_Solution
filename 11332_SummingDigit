@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		while (true) {
+			int num=sc.nextInt();
+			if (num==0)break;
+			while (true) {
+				if (num>=10) {
+					num=sumdigit(num);
+				}else {
+					break;
+				}
+			}
+			System.out.println(num);
+		}
+	}
+	public static int sumdigit(int num) {
+		int sum=0;
+		while (num>0) {
+			sum+=num%10;
+			num/=10;
+		}
+		return sum;
+	}
+
+}
