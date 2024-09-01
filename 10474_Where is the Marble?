@@ -1,0 +1,42 @@
+import java.util.*;
+import static java.lang.System.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int cas = 0;
+        while (true) {
+            int N = sc.nextInt();  // Number of marbles
+            int Q = sc.nextInt();  // Number of queries
+            if (N == 0 && Q == 0) break;  // Exit condition
+            cas++;
+            System.out.println("CASE# " + cas + ":");
+            int[] arr = new int[N];  // Array of marbles
+            for (int i = 0; i < N; i++) {  // Fill the array starting from index 0
+                arr[i] = sc.nextInt();
+            }
+            Arrays.sort(arr);  // Sort the array
+
+            for (int i = 0; i < Q; i++) {  // Process each query
+                int srch = sc.nextInt();
+                int res = search(srch, arr);  // Search for the marble in the array
+
+                if (res != -1) {
+                    System.out.println(srch + " found at " + (res + 1));  // Output 1-based index
+                } else {
+                    System.out.println(srch + " not found");
+                }
+            }    
+        }
+        sc.close();
+    }
+
+    public static int search(int srch, int[] arr) {
+        for (int j = 0; j < arr.length; j++) {  // Search through the array from index 0
+            if (arr[j] == srch) {
+                return j;  // Return the index where the marble is found
+            }
+        }
+        return -1;  // Return -1 if not found
+    }
+}
